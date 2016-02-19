@@ -1,43 +1,60 @@
 /*
 This is empty on purpose! Your code to build the resume will go here.
  */
-var newHeaderName=HTMLheaderName.replace("%data%","Maha keerthi");
-var newHeaderRole=HTMLheaderRole.replace("%data%","front-End-Ninja");
-$("#header").append(newHeaderRole);
-$("#header").prepend(newHeaderName);
-
 var bio ={
-	"name" : "mahakeerthi",
+	"name" : "maha keerthi",
 	"role" : "front-End-Ninja",
-	"contact" : {"mobile" : "+91-8088812635", "email" : "mahakeerthi3@gmail.com", "twitter": "@mahakeerthi", "github" : "http://placehold.it/350x150","blog" :"http://placehold.it/350x150", "location" : "bangalore"},
-	"url" : "https://placehold.it/150x100",
+	"contact" : {
+		"mobile" : ": +91-8088812635", 
+		"email" : ": mahakeerthi3@gmail.com", 
+		"twitter": ": @mahakeerthi", 
+		"github" : ": http://placehold.it/350x150",
+		"blog" :": www.mahakeerthi.com", 
+		"location" : "bangalore"},
+	"pic" : "images/maha.jpg",
 	"welcomeMessage" : "hi this mahakeerthi how are you",
 	"skills" : ["html","css","BOOTSTRAP","JAVASCRIPT"]
 }
+//bio function
+function bioData(){
+	// replace helper.js bio data
 
+var newHeaderName=HTMLheaderName.replace("%data%",bio.name);
+var newHeaderRole=HTMLheaderRole.replace("%data%",bio.role);
 var newMobile=HTMLmobile.replace("%data%",bio.contact.mobile);
-$("#topContacts").append(newMobile);
-
 var newEmail=HTMLemail.replace("%data%",bio.contact.email);
-$("#topContacts").append(newEmail);
 var newTwitter=HTMLtwitter.replace("%data%",bio.contact.twitter);
-$("#topContacts").append(newTwitter);
-
 var newGithub=HTMLgithub.replace("%data%",bio.contact.github);
-$("#topContacts").append(newGithub);
-
 var newBlog=HTMLblog.replace("%data%",bio.contact.blog);
-$("#topContacts").append(newBlog);
-
-var newBioPic=HTMLbioPic.replace("%data%",bio.url);
-$(".biopic").append(newBioPic);
-
+var newBioLocatio=HTMLlocation.replace("%data%",bio.contact.location);
+var newBioPic=HTMLbioPic.replace("%data%",bio.pic);
 var newWelcomeMessage=HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
-$("#topContacts").append(newWelcomeMessage);
 
-//var newSkills=HTMLskills.replace("%data%",bio.skills[0]);
-//$("#topContacts").append(newSkills);
+// append bio data
+$("#header").append(newHeaderRole);
+$("#header").prepend(newHeaderName);
+$("#topContacts").append(newMobile);
+$("#topContacts").append(newEmail);
+$("#topContacts").append(newTwitter);
+$("#footerContacts").append(newGithub);
+$("#footerContacts").append(newBlog);
+$("#header").append(newBioPic);
+$("#header").append(newWelcomeMessage);
+//checking bio skills 
+if(bio.skills.length>0)
+	{
+		$("#header").append(HTMLskillsStart);
+		for(var bio1 in bio.skills){
+			var newSkills = HTMLskills.replace("%data%",bio.skills[bio1]);
+			$("#header").append(newSkills)
+		}
 
+	}
+
+}
+// calling bio function
+
+bioData();
 
 /* json education object literal notation */
 
@@ -47,7 +64,7 @@ var education={
 		"school" : "cit gubbi",
 		"city" : "tumkur",
 		"majors" : "information science & engineering",
-		"year" : 2014
+		"year" : "2014"
 	}],
 "online_course" :	[{
 		"title" : "front end nano degree",
@@ -58,6 +75,26 @@ var education={
 	}]
 }
 
+// starting education function
+function educationDisplay(){
+	for(var edu in education.schools){
+	$("#header").append(HTMLschoolStart);
+	var newSchoolName = HTMLschoolName.replace("%data%",education.schools[edu].school);
+	var newSchoolDegree = HTMLschoolDegree.replace("%data%",education.schools[edu].majors);
+	var newSchoolDate = HTMLschoolDates.replace("%data%",education.schools[edu].year);
+	var newSchoolLocation = HTMLschoolLocation.replace("%data%",education.schools[edu].city);
+	var newSchoolMajor = HTMLschoolMajor.replace("%data%",education.schools[edu].majors);
+
+	$("#education").append(newSchoolName);
+	$("#education").append(newSchoolDegree);
+	$("#education").append(newSchoolDate);
+	$("#education").append(newSchoolLocation);
+	$("#education").append(newSchoolMajor);
+}
+
+}
+// calling educationDisplay() function
+	educationDisplay();
 var work ={
 	"jobs" : [
 	{
